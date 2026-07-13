@@ -83,6 +83,11 @@ def addoption(parser):
 						default="",
 						required=False,
 						help="test_name")
+	parser.addoption('--userflow_name', '--userflow_name', dest='userflow_name',
+						type=str, nargs='?',
+						default=None,
+						required=False,
+						help="userflow_name")
 	parser.addoption('--test_type', '--test_type', dest='test_type',
 						type=str, nargs='?',
 						default="",
@@ -211,6 +216,12 @@ def init_args(request, self):
 	except:	pass
 
 	self.app_name = "Google Maps"
+
+	# custom user flow name (overrides the script's default test_name if provided)
+	self.userflow_name = request.config.getoption("userflow_name")
+	if self.userflow_name:
+		self.test_name = self.userflow_name
+		self.test_summary = self.test_name + " Test Result"
 
 	#language selector
 	self.lang = request.config.getoption("language")
