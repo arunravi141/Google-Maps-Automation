@@ -1,5 +1,6 @@
 import allure
 class TestSearchPlace:
+    # Default user flow name; override at runtime with the --userflow_name CLA.
     test_name = "Search Place"
     KPI_COUNT = 2
     test_summary = test_name+" Test Result"
